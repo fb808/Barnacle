@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Barnacle</string>
+
+    <string name="barnacle">따개비</string>
+    <string name="AddExplanation">: 예방접종 챙기기</string>
+
+    <string name="text_id">id</string>
+    <string name="text_password">password</string>
+    <string name="text_idKR">아이디</string>
+    <string name="text_passwordKR">비밀번호</string>
+
+    <string name="text_loginKR">로그인</string>
+    <string name="text_SignUpKR">회원가입</string>
+    <string name="text_FindIdKR">아이디 찾기</string>
+
+    <string name="pressId">아이디를 입력하세요</string>
+    <string name="pressEmail">이메일을 입력하세요</string>
+    <string name="pressPassword">비밀번호를 입력하세요</string>
+    <string name="confirmPassword">비밀번호 확인</string>
+
+
+</resources>
