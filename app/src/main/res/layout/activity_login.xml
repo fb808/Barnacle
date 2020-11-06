@@ -16,7 +16,7 @@
         android:gravity="bottom|center_horizontal"
         android:text="@string/barnacle"
         android:textColor="#000000"
-        android:textSize="36sp" />
+        android:textSize="36dp" />
 
     <TextView
         android:id="@+id/tv_login2"
@@ -27,7 +27,7 @@
         android:gravity="bottom|center_horizontal"
         android:text="@string/AddExplanation"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/et_Id"
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:stateListAnimator="@null"
-        android:text="@string/text_FindIdKR" />
+        android:text="@string/text_FindIdPwKR" />
 
     <Button
         android:id="@+id/btn_SignUp"

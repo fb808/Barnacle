@@ -11,7 +11,7 @@
 
     <string name="text_loginKR">로그인</string>
     <string name="text_SignUpKR">회원가입</string>
-    <string name="text_FindIdKR">아이디 찾기</string>
+    <string name="text_FindIdPwKR">아이디 / 비밀번호 찾기</string>
 
     <string name="pressId">아이디를 입력하세요</string>
     <string name="pressEmail">이메일을 입력하세요</string>
