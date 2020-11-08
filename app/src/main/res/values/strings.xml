@@ -14,6 +14,7 @@
     <string name="text_FindIdPwKR">아이디 / 비밀번호 찾기</string>
 
     <string name="pressId">아이디를 입력하세요</string>
+    <string name="checkId">중복 확인</string>
     <string name="pressEmail">이메일을 입력하세요</string>
     <string name="pressPassword">비밀번호를 입력하세요</string>
     <string name="confirmPassword">비밀번호 확인</string>
