@@ -39,6 +39,7 @@
             android:textColorHint="@color/hint" />
 
         <Button
+            android:id="@+id/btn_checkId"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
