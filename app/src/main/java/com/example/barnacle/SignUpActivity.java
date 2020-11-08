@@ -3,6 +3,7 @@ package com.example.barnacle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,8 +21,8 @@ import org.json.JSONObject;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private EditText et_setId, et_setPassword, et_confirmPassword, et_setEmail;
-    private TextView btn_checkId, btn_signUp, btn_login;
+    private EditText et_setId, et_setPassword, et_ConfirmPassword, et_setEmail;
+    private Button btn_checkId, btn_signUp, btn_login;
     private AlertDialog dialog;
     private boolean validate = false;
 
@@ -33,10 +34,11 @@ public class SignUpActivity extends AppCompatActivity {
         //아이디값 찾아주기
         et_setId = (EditText) findViewById(R.id.et_SetId);
         et_setPassword = (EditText) findViewById(R.id.et_SetPassword);
+        et_ConfirmPassword = (EditText) findViewById(R.id.et_ConfirmPassword);
         et_setEmail = (EditText) findViewById(R.id.et_SetEmail);
-        btn_checkId = (TextView) findViewById(R.id.btn_checkId);
-        btn_signUp = (TextView) findViewById(R.id.btn_SignUp);
-        btn_login = (TextView) findViewById(R.id.btn_login);
+        btn_checkId = (Button) findViewById(R.id.btn_checkId);
+        btn_signUp = (Button) findViewById(R.id.btn_SignUp);
+        btn_login = (Button) findViewById(R.id.btn_login);
 
         //아이디 중복체크
         btn_checkId.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
                     return; //검증완료
                 }
 
+                //ID값을 입력하지 않았다면
                 if (userId.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
                     dialog = builder.setMessage("아이디를 입력하세요.").setPositiveButton("확인", null).create();
@@ -54,22 +57,28 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
+                //검증 시작
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
+
                     @Override
                     public void onResponse(String response) {
                         try {
+                            Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_LONG).show();
+
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
 
+                            //사용 가능 아이디일 경우
                             if (success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
                                 dialog = builder.setMessage("사용할 수 있는 아이디입니다.").setPositiveButton("확인", null).create();
                                 dialog.show();
                                 et_setId.setEnabled(false); //아이디값 고정
                                 validate = true; //검증 완료
+                                et_setId.setBackgroundColor(getResources().getColor(R.color.theme));
                                 btn_checkId.setBackgroundColor(getResources().getColor(R.color.theme));
                             }
-                            else {
+                            else { //사용할 수 없는 아이디일 경우
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
                                 dialog = builder.setMessage("이미 존재하는 아이디입니다.").setNegativeButton("확인", null).create();
                                 dialog.show();
@@ -80,6 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 };
 
+                //Volley 라이브러리를 이용해 실제 서버와 통신
                 ValidateRequest validateRequest = new ValidateRequest(userId, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
                 queue.add(validateRequest);
@@ -93,7 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
                 final String userId = et_setId.getText().toString();
                 final String userPassword = et_setPassword.getText().toString();
                 final String userEmail = et_setEmail.getText().toString();
-                final String confirmPassword = et_confirmPassword.getText().toString();
+                final String confirmPassword = et_ConfirmPassword.getText().toString();
 
                 //아이디 중복체크 확인
                 if (!validate){

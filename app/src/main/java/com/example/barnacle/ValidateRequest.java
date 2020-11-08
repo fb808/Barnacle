@@ -11,11 +11,11 @@ import java.util.Map;
 
 public class ValidateRequest extends StringRequest {
 
-    final static private String URL = "http://barnacle.dothome.co.kr/Register.php";
+    final static private String URL = "http://barnacle.dothome.co.kr/UserValidate.php";
     private Map<String, String> map;
 
     public ValidateRequest(String userId, Response.Listener<String> listener) {
-        super(Method.POST, URL, listener, null);
+        super(Request.Method.POST, URL, listener, null);
 
         map = new HashMap<>();
         map.put("userId", userId);
