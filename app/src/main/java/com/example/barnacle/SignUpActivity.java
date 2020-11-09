@@ -44,55 +44,56 @@ public class SignUpActivity extends AppCompatActivity {
         btn_checkId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userId = et_setId.getText().toString();
-                if(validate){
-                    return; //검증완료
-                }
+            String UserId = et_setId.getText().toString();
+            if(validate){
+                return; //검증완료
+            }
 
-                //ID값을 입력하지 않았다면
-                if (userId.equals("")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
-                    dialog = builder.setMessage("아이디를 입력하세요.").setPositiveButton("확인", null).create();
-                    dialog.show();
-                    return;
-                }
+            //ID값을 입력하지 않았다면
+            if (UserId.equals("")) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+                dialog = builder.setMessage("아이디를 입력하세요.").setPositiveButton("확인", null).create();
+                dialog.show();
+                return;
+            }
 
-                //검증 시작
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
+            //검증 시작
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_LONG).show();
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_LONG).show();
 
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
+                        JSONObject jsonResponse = new JSONObject(response);
+                        boolean success = jsonResponse.getBoolean("success");
 
-                            //사용 가능 아이디일 경우
-                            if (success) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
-                                dialog = builder.setMessage("사용할 수 있는 아이디입니다.").setPositiveButton("확인", null).create();
-                                dialog.show();
-                                et_setId.setEnabled(false); //아이디값 고정
-                                validate = true; //검증 완료
-                                et_setId.setBackgroundColor(getResources().getColor(R.color.theme));
-                                btn_checkId.setBackgroundColor(getResources().getColor(R.color.theme));
-                            }
-                            else { //사용할 수 없는 아이디일 경우
-                                AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
-                                dialog = builder.setMessage("이미 존재하는 아이디입니다.").setNegativeButton("확인", null).create();
-                                dialog.show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        //사용 가능 아이디일 경우
+
+                        if (success) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+                            dialog = builder.setMessage("사용할 수 있는 아이디입니다.").setPositiveButton("확인", null).create();
+                            dialog.show();
+                            et_setId.setEnabled(false); //아이디값 고정
+                            validate = true; //검증 완료
+                            et_setId.setBackgroundColor(getResources().getColor(R.color.theme));
+                            btn_checkId.setBackgroundColor(getResources().getColor(R.color.theme));
                         }
+                        else { //사용할 수 없는 아이디일 경우
+                            AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+                            dialog = builder.setMessage("이미 존재하는 아이디입니다.").setNegativeButton("확인", null).create();
+                            dialog.show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                };
+                }
+            };
 
-                //Volley 라이브러리를 이용해 실제 서버와 통신
-                ValidateRequest validateRequest = new ValidateRequest(userId, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-                queue.add(validateRequest);
+            //Volley 라이브러리를 이용해 실제 서버와 통신
+            ValidateRequest validateRequest = new ValidateRequest(UserId, responseListener);
+            RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
+            queue.add(validateRequest);
             }
         });
 
@@ -100,10 +101,10 @@ public class SignUpActivity extends AppCompatActivity {
         btn_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String userId = et_setId.getText().toString();
-                final String userPassword = et_setPassword.getText().toString();
-                final String userEmail = et_setEmail.getText().toString();
-                final String confirmPassword = et_ConfirmPassword.getText().toString();
+                final String UserId = et_setId.getText().toString();
+                final String UserPassword = et_setPassword.getText().toString();
+                final String UserEmail = et_setEmail.getText().toString();
+                final String ConfirmPassword = et_ConfirmPassword.getText().toString();
 
                 //아이디 중복체크 확인
                 if (!validate){
@@ -114,7 +115,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
                 //한 칸이라도 입력 안했을 경우
-                if (userId.equals("") || userPassword.equals("") || userEmail.equals("") || confirmPassword.equals("")) {
+                if (UserId.equals("") || UserEmail.equals("") || UserPassword.equals("") || ConfirmPassword.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
                     dialog = builder.setMessage("모두 입력해주세요.").setNegativeButton("확인", null).create();
                     dialog.show();
@@ -129,9 +130,9 @@ public class SignUpActivity extends AppCompatActivity {
                             boolean success = jsonObject.getBoolean( "success" );
 
                             //회원가입 성공시
-                            if(userPassword.equals(confirmPassword)) {
+                            if(UserPassword.equals(ConfirmPassword)) {
                                 if (success) {
-                                    Toast.makeText(getApplicationContext(), String.format("%s님 환영합니다.", userId), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), String.format("%s님 환영합니다.", UserId), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                                     startActivity(intent);
 
@@ -155,7 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
                 };
 
                 //서버로 Volley를 이용해서 요청
-                SignUpRequest signUpRequest = new SignUpRequest(userId, userPassword, userEmail, responseListener);
+                SignUpRequest signUpRequest = new SignUpRequest(UserId, UserPassword, UserEmail, responseListener);
                 RequestQueue queue = Volley.newRequestQueue( SignUpActivity.this );
                 queue.add(signUpRequest);
             }
