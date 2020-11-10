@@ -1,0 +1,20 @@
+닷홈
+아이디 : fbwlals0118	비밀번호 : alth1004^^
+ftp아이디 : barnacle	ftp비밀번호 : alth1004^^
+기본제공 도메인 : barnacle.dothome.co.kr
+DB명 : barnacle
+DB아이디 : barnacle
+DB비밀번호 : alth1004^^
+
+------------------------------------------------
+
+use barnacle;
+
+CREATE TABLE UserInfo (
+    UserId varchar(50) NOT NULL,
+    UserPassword varchar(50) NOT NULL ,
+    UserEmail varchar(100) NOT NULL ,
+    CONSTRAINT PRIMARY KEY (userId)
+);
+
+INSERT INTO UserInfo VALUES('abcdefg', 'abcd123', 'dmadma@naver.com');
