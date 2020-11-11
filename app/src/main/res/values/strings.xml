@@ -10,6 +10,7 @@
     <string name="text_passwordKR">비밀번호</string>
 
     <string name="text_loginKR">로그인</string>
+    <string name="text_logoutKR">로그아웃</string>
     <string name="text_SignUpKR">회원가입</string>
     <string name="text_FindIdPwKR">아이디 / 비밀번호 찾기</string>
 
@@ -18,6 +19,11 @@
     <string name="pressEmail">이메일을 입력하세요</string>
     <string name="pressPassword">비밀번호를 입력하세요</string>
     <string name="confirmPassword">비밀번호 확인</string>
+    <string name="ex_service">서비스 소개</string>
+    <string name="search">병원/약국 찾기</string>
+    <string name="write">접종 상황 기록하기</string>
+    <string name="find_self_check">나에게 맞는 예방접종 알아보기</string>
+    <string name="to_learn">예방접종 알아보기</string>
 
 
 </resources>
