@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_login1"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="bottom|center_horizontal"
+        android:text="@string/barnacle"
+        android:textColor="@color/black"
+        android:textSize="36dp" />
+
+    <TextView
+        android:id="@+id/tv_login2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="60dp"
+        android:gravity="bottom|center_horizontal"
+        android:text="@string/AddExplanation"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/to_login"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:textSize="20dp"-->
+    <!--        android:text="@string/text_loginKR"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:background="@color/theme"-->
+    <!--        android:gravity="center"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginBottom="10dp" />-->
+
+    <TextView
+        android:id="@+id/to_learn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="20dp"
+        android:text="@string/to_learn"
+        android:textColor="@color/black"
+        android:background="@color/theme"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:id="@+id/self_check"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="20dp"
+        android:text="@string/find_self_check"
+        android:textColor="@color/black"
+        android:background="@color/theme"
+        android:gravity="center"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:id="@+id/write"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="20dp"
+        android:text="@string/write"
+        android:textColor="@color/black"
+        android:background="@color/theme"
+        android:gravity="center"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="20dp"
+        android:text="@string/search"
+        android:textColor="@color/black"
+        android:background="@color/theme"
+        android:gravity="center"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:id="@+id/ex_app"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="20dp"
+        android:text="@string/ex_service"
+        android:textColor="@color/black"
+        android:background="@color/theme"
+        android:gravity="center"
+        android:layout_marginBottom="10dp" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/to_logout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:textSize="20dp"-->
+    <!--        android:text="@string/text_logoutKR"-->
+    <!--        android:textColor="@color/theme"-->
+    <!--        android:background="@color/hint"-->
+    <!--        android:gravity="center"-->
+    <!--        android:layout_marginBottom="10dp" />-->
+
+</LinearLayout>
