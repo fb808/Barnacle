@@ -11,7 +11,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:text="@string/to_learn"
+        android:text="@string/ex_service"
         android:textSize="20dp"
         android:textColor="@color/hint" >
     </TextView>
