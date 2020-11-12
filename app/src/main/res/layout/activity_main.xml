@@ -29,20 +29,8 @@
         android:textColor="@color/black"
         android:textSize="20dp" />
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/to_login"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="50dp"-->
-    <!--        android:textSize="20dp"-->
-    <!--        android:text="@string/text_loginKR"-->
-    <!--        android:textColor="@color/black"-->
-    <!--        android:background="@color/theme"-->
-    <!--        android:gravity="center"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:layout_marginBottom="10dp" />-->
 
-
-    <TextView
+    <Button
         android:id="@+id/to_learn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -54,7 +42,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp" />
 
-    <TextView
+    <Button
         android:id="@+id/self_check"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -65,7 +53,7 @@
         android:gravity="center"
         android:layout_marginBottom="10dp" />
 
-    <TextView
+    <Button
         android:id="@+id/write"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -76,7 +64,7 @@
         android:gravity="center"
         android:layout_marginBottom="10dp" />
 
-    <TextView
+    <Button
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -87,7 +75,7 @@
         android:gravity="center"
         android:layout_marginBottom="10dp" />
 
-    <TextView
+    <Button
         android:id="@+id/ex_app"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -98,13 +86,24 @@
         android:gravity="center"
         android:layout_marginBottom="10dp" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/Google_Login"
-        android:layout_width="300dp"
+    <Button
+        android:id="@+id/login_out"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:text="@string/text_login_out"
+        android:textColor="@color/black"
+        android:background="@color/theme"
+        android:gravity="center"
         android:layout_marginBottom="10dp" />
+
+<!--    <com.google.android.gms.common.SignInButton-->
+<!--        android:id="@+id/Google_Login"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginBottom="10dp" />-->
 
 
     <!--    <TextView-->

@@ -6,11 +6,12 @@
 
     <string name="text_id">id</string>
     <string name="text_password">password</string>
-    <string name="text_idKR">아이디</string>
+    <string name="text_idKR">아이디 (이메일)</string>
     <string name="text_passwordKR">비밀번호</string>
 
     <string name="text_loginKR">로그인</string>
     <string name="text_logoutKR">로그아웃</string>
+    <string name="text_login_out">로그인 / 로그아웃</string>
     <string name="text_SignUpKR">회원가입</string>
     <string name="text_FindIdPwKR">아이디 / 비밀번호 찾기</string>
 
@@ -23,7 +24,16 @@
     <string name="search">병원/약국 찾기</string>
     <string name="write">접종 상황 기록하기</string>
     <string name="find_self_check">나에게 맞는 예방접종 알아보기</string>
-    <string name="to_learn">예방접종 알아보기</string>
+    <string name="to_learn">예방접종이란?</string>
 
+    <string name="to_learn_Ex">
+        \t면역(immunity)은 자기 자신(self)의 물질과 외부물질(foreign material)을 구별하여
+        외부물질에 대항함으로써 이를 제거하는 인체의 능력을 일컫는다. 대부분의 병원체는 면역체계에 의해
+        외부물질로 인식되므로 면역은 감염질환으로부터 인체를 보호하는 역할을 수행한다. \n
+        \t백신 또는 예방주사는 항원, 즉 병원체를 약하게 만들어 인체에 주입하여 항체를 형성하게 하여
+        그 질병에 저항하는 후천적 면역이 생기도록 하는 의약품이다.
+        우리는 예방주사를 통해 해당하는 질병에 관한 면역체계를 확립할 수 있으며 예방접종으로 인간이 정복한 질병도 있다.
+
+    </string>
 
 </resources>
