@@ -11,9 +11,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -27,13 +25,16 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.places.GeoDataClient;
+import com.google.android.gms.location.places.PlaceDetectionClient;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -43,67 +44,68 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
-        ActivityCompat.OnRequestPermissionsResultCallback {
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Marker currentMarker = null;
-    private static final String TAG = "googlemap_example";
-    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
-    private static final int UPDATE_INTERVAL_MS = 1000;  // 1초
-    private static final int FASTEST_UPDATE_INTERVAL_MS = 500; // 0.5초
+    private CameraPosition mCameraPosition;
 
-    // onRequestPermissionsResult에서 수신된 결과에서 ActivityCompat.requestPermissions를 사용한 퍼미션 요청을 구별하기 위해 사용됩니다.
+    private GeoDataClient mGeoDataClient;
+    private PlaceDetectionClient mPlaceDetectionClient;
+
+    private  FusedLocationProviderClient mFusedLocationClient;
+
+    private LatLng mDefaultLocation = new LatLng(35.050538, 126.720457);
+    private static final int DEFAULT_ZOOM = 15;
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    private boolean mLocationPermissionGranted;
+
+    private Location mLastKnowLocation;
+    private LocationRequest locationRequest;
+
+    private static final String KEY_CAMERA_POSITION = "camera_position";
+    private static final String KEY_LOCATION = "location";
+
+//
+    private Marker currentMarker = null;
+//    private static final String TAG = "googlemap_example";
+    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
+//    private static final int UPDATE_INTERVAL_MS = 1000;  // 1초
+//    private static final int FASTEST_UPDATE_INTERVAL_MS = 500; // 0.5초
+//
+//    // onRequestPermissionsResult에서 수신된 결과에서 ActivityCompat.requestPermissions를 사용한 퍼미션 요청을 구별하기 위해 사용됩니다.
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     boolean needRequest = false;
-
-    // 앱을 실행하기 위해 필요한 퍼미션을 정의합니다.
+//
+//    // 앱을 실행하기 위해 필요한 퍼미션을 정의합니다.
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};  // 외부 저장소
-
-
-    Location mCurrentLocatiion;
-    LatLng currentPosition;
-
-
-    private FusedLocationProviderClient mFusedLocationClient;
-    private LocationRequest locationRequest;
-    private Location location;
-
-
+//
+    Location mCurrentLocation;
+//    LatLng currentPosition;
+//
+//    private FusedLocationProviderClient mFusedLocationClient;
+//    private Location location;
+//
     private View mLayout;  // Snackbar 사용하기 위해서는 View가 필요합니다.
-    // (참고로 Toast에서는 Context가 필요했습니다.)
-
-//    private FragmentManager fragmentManager;
-//    private MapFragment mapFragment;
+//    // (참고로 Toast에서는 Context가 필요했습니다.)
+//
+////    private FragmentManager fragmentManager;
+////    private MapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-//        fragmentManager = getFragmentManager();
-//        mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.googleMap);
-//        mapFragment.getMapAsync(this);
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
-                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-        setContentView(R.layout.activity_main);
-
+        if (savedInstanceState != null){
+            mLastKnowLocation = savedInstanceState.getParcelable(KEY_LOCATION);
+            mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
+        }
+        setContentView(R.layout.map);
         mLayout = findViewById(R.id.layout_map);
 
-        locationRequest = new LocationRequest()
-                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(UPDATE_INTERVAL_MS)
-                .setFastestInterval(FASTEST_UPDATE_INTERVAL_MS);
-
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
-        builder.addLocationRequest(locationRequest);
-
+        mGeoDataClient = Places.getGeoDataClient(this, null);
+        mPlaceDetectionClient = Places.getPlaceDetectionClient(this, null);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView) ;
@@ -118,14 +120,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onMapReady(final GoogleMap googleMap) {
-        Log.d(TAG, "onMapReady :");
+    protected void onSaveInstanceState(Bundle outState){
+        if (mMap != null){
+            outState.putParcelable(KEY_CAMERA_POSITION, mMap.getCameraPosition());
+            outState.putParcelable(KEY_LOCATION, mLastKnowLocation);
+            super.onSaveInstanceState(outState);
+        }
+    }
 
+    @Override
+    public void onMapReady(final GoogleMap googleMap) {
         mMap = googleMap;
 
         //런타임 퍼미션 요청 대화상자나 GPS 활성 요청 대화상자 보이기전에
         //지도의 초기위치를 서울로 이동
-        setDefaultLocation();
+//        setDefaultLocation();
 
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
@@ -161,12 +170,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
 
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                Log.d( TAG, "onMapClick :");
-            }
-        });
+//        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+//            @Override
+//            public void onMapClick(LatLng latLng) {
+//                Log.d( TAG, "onMapClick :");
+//            }
+//        });
     }
 
     LocationCallback locationCallback = new LocationCallback() {
@@ -177,28 +186,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             List<Location> locationList = locationResult.getLocations();
 
             if (locationList.size() > 0) {
-                location = locationList.get(locationList.size() - 1);
+                mLastKnowLocation = locationList.get(locationList.size() - 1);
                 //location = locationList.get(0);
 
-                currentPosition
-                        = new LatLng(location.getLatitude(), location.getLongitude());
+                mDefaultLocation
+                        = new LatLng(mLastKnowLocation.getLatitude(), mLastKnowLocation.getLongitude());
 
-                String markerTitle = getCurrentAddress(currentPosition);
-                String markerSnippet = "위도:" + String.valueOf(location.getLatitude())
-                        + " 경도:" + String.valueOf(location.getLongitude());
-
-                Log.d(TAG, "onLocationResult : " + markerSnippet);
+                String markerTitle = getCurrentAddress(mDefaultLocation);
+                String markerSnippet = "위도:" + String.valueOf(mLastKnowLocation.getLatitude())
+                        + " 경도:" + String.valueOf(mLastKnowLocation.getLongitude());
 
                 //현재 위치에 마커 생성하고 이동
-                setCurrentLocation(location, markerTitle, markerSnippet);
-                mCurrentLocatiion = location;
+                setCurrentLocation(mLastKnowLocation, markerTitle, markerSnippet);
+                mCurrentLocation = mLastKnowLocation;
             }
         }
     };
 
     private void startLocationUpdates() {
         if (!checkLocationServicesStatus()) {
-            Log.d(TAG, "startLocationUpdates : call showDialogForLocationServiceSetting");
             showDialogForLocationServiceSetting();
         }else {
             int hasFineLocationPermission = ContextCompat.checkSelfPermission(this,
@@ -208,11 +214,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             if (hasFineLocationPermission != PackageManager.PERMISSION_GRANTED ||
                     hasCoarseLocationPermission != PackageManager.PERMISSION_GRANTED   ) {
-                Log.d(TAG, "startLocationUpdates : 퍼미션 안가지고 있음");
                 return;
             }
 
-            Log.d(TAG, "startLocationUpdates : call mFusedLocationClient.requestLocationUpdates");
             mFusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
             if (checkPermission())
                 mMap.setMyLocationEnabled(true);
@@ -222,9 +226,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
         if (checkPermission()) {
-            Log.d(TAG, "onStart : call mFusedLocationClient.requestLocationUpdates");
             mFusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null);
             if (mMap!=null)
                 mMap.setMyLocationEnabled(true);
@@ -235,7 +237,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onStop() {
         super.onStop();
         if (mFusedLocationClient != null) {
-            Log.d(TAG, "onStop : call stopLocationUpdates");
             mFusedLocationClient.removeLocationUpdates(locationCallback);
         }
     }
@@ -409,7 +410,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //사용자가 GPS 활성 시켰는지 검사
                 if (checkLocationServicesStatus()) {
                     if (checkLocationServicesStatus()) {
-                        Log.d(TAG, "onActivityResult : GPS 활성화 되있음");
                         needRequest = true;
                         return;
                     }

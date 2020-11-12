@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="80dp"
         android:gravity="bottom|center_horizontal"
         android:text="@string/AddExplanation"
         android:textColor="@color/black"
@@ -40,7 +40,7 @@
         android:background="@color/theme"
         android:gravity="center"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="20dp" />
 
     <Button
         android:id="@+id/self_check"
@@ -51,18 +51,18 @@
         android:textColor="@color/black"
         android:background="@color/theme"
         android:gravity="center"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="20dp" />
 
-    <Button
-        android:id="@+id/write"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textSize="20dp"
-        android:text="@string/write"
-        android:textColor="@color/black"
-        android:background="@color/theme"
-        android:gravity="center"
-        android:layout_marginBottom="10dp" />
+<!--    <Button-->
+<!--        android:id="@+id/write"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:textSize="20dp"-->
+<!--        android:text="@string/write"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:background="@color/theme"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginBottom="10dp" />-->
 
     <Button
         android:id="@+id/map"
@@ -73,7 +73,7 @@
         android:textColor="@color/black"
         android:background="@color/theme"
         android:gravity="center"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="20dp" />
 
     <Button
         android:id="@+id/ex_app"
@@ -84,18 +84,18 @@
         android:textColor="@color/black"
         android:background="@color/theme"
         android:gravity="center"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="20dp" />
 
-    <Button
-        android:id="@+id/login_out"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textSize="20dp"
-        android:text="@string/text_login_out"
-        android:textColor="@color/black"
-        android:background="@color/theme"
-        android:gravity="center"
-        android:layout_marginBottom="10dp" />
+<!--    <Button-->
+<!--        android:id="@+id/login_out"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:textSize="20dp"-->
+<!--        android:text="@string/text_login_out"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:background="@color/theme"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginBottom="10dp" />-->
 
 <!--    <com.google.android.gms.common.SignInButton-->
 <!--        android:id="@+id/Google_Login"-->

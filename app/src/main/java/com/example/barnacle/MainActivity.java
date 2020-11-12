@@ -16,14 +16,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        to_login = (Button) findViewById(R.id.login_out);
-        to_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                MainActivity.this.startActivity(intent);
-            }
-        });
+//        to_login = (Button) findViewById(R.id.login_out);
+//        to_login.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                MainActivity.this.startActivity(intent);
+//            }
+//        });
 
         to_learn = (Button) findViewById(R.id.to_learn);
         to_learn.setOnClickListener(new View.OnClickListener() {
@@ -43,14 +43,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        write = (Button) findViewById(R.id.write);
-        write.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, 새로운.class);
-//                MainActivity.this.startActivity(intent);
-            }
-        });
+//        write = (Button) findViewById(R.id.write);
+//        write.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Intent intent = new Intent(MainActivity.this, 새로운.class);
+////                MainActivity.this.startActivity(intent);
+//            }
+//        });
 
         map = (Button) findViewById(R.id.map);
         map.setOnClickListener(new View.OnClickListener() {
