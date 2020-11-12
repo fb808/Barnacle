@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         to_learn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, dma.class);
-//                MainActivity.this.startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, ToLearnActivity.class);
+                MainActivity.this.startActivity(intent);
             }
         });
 
@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         self_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, 새로운.class);
-//                MainActivity.this.startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, SelfCheckActivity.class);
+                MainActivity.this.startActivity(intent);
             }
         });
 
@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, 새로운.class);
-//                MainActivity.this.startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                MainActivity.this.startActivity(intent);
             }
         });
 
