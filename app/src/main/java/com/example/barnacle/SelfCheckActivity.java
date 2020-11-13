@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SelfCheckActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+public class SelfCheckActivity extends AppCompatActivity {
 
     ImageView imageView;
     EditText birth;
@@ -19,8 +19,10 @@ public class SelfCheckActivity extends AppCompatActivity implements CompoundButt
     CheckBox checkBox6, checkBox7, checkBox8, checkBox9, checkBox10;
     CheckBox checkBox11, checkBox12, checkBox13;
     Button submit;
-    private String[] vaccin = new String[]{"인플루엔자(Flu)", "폐렴구균(PPSV)", "폐렴구균(PCV)", "파상풍/디프테리아(백일해)/(Tdap/Td)", "A형간염(HepA)", "B형간염(HepB)",
-            "수두(Var)", "홍역/유행성 이하선염/풍진 (MMR)", "대상포진(HZV)", "수막구균(MCV4)", "b형 헤모필루스 인플루엔자(Hib)", "폴리오(IPV)"};
+    private String[] vaccin = new String[]
+            {"인플루엔자(Flu)", "폐렴구균(PPSV)", "폐렴구균(PCV)", "파상풍/디프테리아(백일해)/(Tdap/Td)", "A형간염(HepA)",
+                    "B형간염(HepB)", "수두(Var)", "홍역/유행성 이하선염/풍진 (MMR)", "대상포진(HZV)", "수막구균(MCV4)",
+                    "b형 헤모필루스 인플루엔자(Hib)", "폴리오(IPV)"}; //12개, 0~11
     int birth_num;
     boolean[] disease;
     CheckBox[] setOfCheckBoxes;
@@ -29,7 +31,7 @@ public class SelfCheckActivity extends AppCompatActivity implements CompoundButt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.self_check);
 
-        imageView = (ImageView) findViewById(R.id.imageView) ;
+        imageView = (ImageView) findViewById(R.id.imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,7 +42,6 @@ public class SelfCheckActivity extends AppCompatActivity implements CompoundButt
         });
 
         birth = (EditText) findViewById(R.id.birth);
-        birth_num = Integer.parseInt(birth.getText().toString()); //정수값 가져오기
 
         setOfCheckBoxes = new CheckBox[]{
             (CheckBox) findViewById(R.id.checkBox1),
@@ -57,10 +58,10 @@ public class SelfCheckActivity extends AppCompatActivity implements CompoundButt
             (CheckBox) findViewById(R.id.checkBox12),
             (CheckBox) findViewById(R.id.checkBox13)
         };
-
-        for(int i = 0; i < setOfCheckBoxes.length; i++){
-            setOfCheckBoxes[i].setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) this);
-        }
+//
+//        for(int i = 0; i < setOfCheckBoxes.length; i++){
+//            setOfCheckBoxes[i].setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) this);
+//        }
 
 //        checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
 //        checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
@@ -75,23 +76,80 @@ public class SelfCheckActivity extends AppCompatActivity implements CompoundButt
 //        checkBox11 = (CheckBox) findViewById(R.id.checkBox11);
 //        checkBox12 = (CheckBox) findViewById(R.id.checkBox12);
 //        checkBox13 = (CheckBox) findViewById(R.id.checkBox13);
-    }
 
-    @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
         disease = new boolean[13];
-        String result = "";
+        final String[] result = {""};
 
-        for(int i = 0; i < setOfCheckBoxes.length; i++){
+        for (int i = 0; i < setOfCheckBoxes.length; i++) {
             disease[i] = setOfCheckBoxes[i].isChecked();
         }
-        for (int i = 0; i<setOfCheckBoxes.length; i++){
-            if (disease[i]){
 
+//        int now_year = 2020;
+//        birth_num = parseInt(birth.getText().toString()); //정수값 가져오기
 
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (disease[0]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1]);
+                }
+
+                if (disease[1]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1]);
+                }
+
+                if (disease[2]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1]);
+                }
+
+                if (disease[3]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[5]);
+                }
+
+                if (disease[4]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[4] + ", \n" + vaccin[5]);
+                }
+
+                if (disease[5]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2]);
+                }
+
+                if (disease[6]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2]);
+                }
+
+                if (disease[7]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2]);
+                }
+
+                if (disease[8]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2] + ", \n" + vaccin[3] + ", \n"
+                            + vaccin[4] + ", \n" + vaccin[5] + ", \n" + vaccin[10] + ", \n" + vaccin[11]);
+                }
+
+                if (disease[9]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2] + ", \n" + vaccin[9] + ", \n" + vaccin[10]);
+
+                }
+
+                if (disease[10]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[5]);
+
+                }
+
+                if (disease[11]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[5]);
+
+                }
+
+                if (disease[12]) {
+                    result[0] += (vaccin[0] + ", \n" + vaccin[3]);
+
+                }
+
+                TextView tv = (TextView) findViewById(R.id.result_selfCheck);
+                tv.setText(result[0]);
             }
-
-        }
-
-    }
+        });
+   }
 }

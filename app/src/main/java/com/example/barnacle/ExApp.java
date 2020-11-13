@@ -7,20 +7,23 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ToLearnActivity extends AppCompatActivity {
+public class ExApp extends AppCompatActivity {
+
+    ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.to_learn);
+        setContentView(R.layout.ex_app);
 
-        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        imageView = (ImageView) findViewById(R.id.imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ToLearnActivity.this, MainActivity.class);
-                ToLearnActivity.this.startActivity(intent);
+            public void onClick(View v) {
+                Intent intent = new Intent(ExApp.this, MainActivity.class);
+                ExApp.this.startActivity(intent);
             }
-        });
 
+        });
     }
 }
