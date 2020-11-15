@@ -1,4 +1,4 @@
-package com.example.barnacle;
+package com.barnacle.barnacle;
 
 import android.Manifest;
 import android.app.AlertDialog;

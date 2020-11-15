@@ -1,4 +1,4 @@
-package com.example.barnacle;
+package com.barnacle.barnacle;
 
 import android.content.Intent;
 import android.os.Bundle;
