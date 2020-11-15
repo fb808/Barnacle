@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "975472240731",
+    "firebase_url": "https://barnacle-bcb3f.firebaseio.com",
+    "project_id": "barnacle-bcb3f",
+    "storage_bucket": "barnacle-bcb3f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975472240731:android:77dce3b3c222bb5a6df77e",
+        "android_client_info": {
+          "package_name": "com.example.barnacle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975472240731-u0li10555687ke4cnq4itn4kde6ltvjf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.barnacle",
+            "certificate_hash": "8066766bf3b1f091b9c6adaacfd5583c4c6bef17"
+          }
+        },
+        {
+          "client_id": "975472240731-e7ipd50dgcbfbo2eu9hgdmabop1qtf3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC5pefUND8WeoKkBB8KCx9g3_QprBhY0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "975472240731-e7ipd50dgcbfbo2eu9hgdmabop1qtf3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
