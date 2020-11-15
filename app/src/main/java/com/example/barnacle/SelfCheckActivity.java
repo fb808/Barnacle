@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -87,69 +86,69 @@ public class SelfCheckActivity extends AppCompatActivity {
 //        int now_year = 2020;
 //        birth_num = parseInt(birth.getText().toString()); //정수값 가져오기
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (disease[0]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1]);
-                }
-
-                if (disease[1]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1]);
-                }
-
-                if (disease[2]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1]);
-                }
-
-                if (disease[3]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[5]);
-                }
-
-                if (disease[4]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[4] + ", \n" + vaccin[5]);
-                }
-
-                if (disease[5]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2]);
-                }
-
-                if (disease[6]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2]);
-                }
-
-                if (disease[7]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2]);
-                }
-
-                if (disease[8]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2] + ", \n" + vaccin[3] + ", \n"
-                            + vaccin[4] + ", \n" + vaccin[5] + ", \n" + vaccin[10] + ", \n" + vaccin[11]);
-                }
-
-                if (disease[9]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2] + ", \n" + vaccin[9] + ", \n" + vaccin[10]);
-
-                }
-
-                if (disease[10]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[5]);
-
-                }
-
-                if (disease[11]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[5]);
-
-                }
-
-                if (disease[12]) {
-                    result[0] += (vaccin[0] + ", \n" + vaccin[3]);
-
-                }
-
-                TextView tv = (TextView) findViewById(R.id.result_selfCheck);
-                tv.setText(result[0]);
-            }
-        });
+//        submit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (disease[0]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1]);
+//                }
+//
+//                if (disease[1]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1]);
+//                }
+//
+//                if (disease[2]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1]);
+//                }
+//
+//                if (disease[3]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[5]);
+//                }
+//
+//                if (disease[4]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[4] + ", \n" + vaccin[5]);
+//                }
+//
+//                if (disease[5]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2]);
+//                }
+//
+//                if (disease[6]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2]);
+//                }
+//
+//                if (disease[7]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2]);
+//                }
+//
+//                if (disease[8]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2] + ", \n" + vaccin[3] + ", \n"
+//                            + vaccin[4] + ", \n" + vaccin[5] + ", \n" + vaccin[10] + ", \n" + vaccin[11]);
+//                }
+//
+//                if (disease[9]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[2] + ", \n" + vaccin[9] + ", \n" + vaccin[10]);
+//
+//                }
+//
+//                if (disease[10]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[5]);
+//
+//                }
+//
+//                if (disease[11]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[1] + ", \n" + vaccin[5]);
+//
+//                }
+//
+//                if (disease[12]) {
+//                    result[0] += (vaccin[0] + ", \n" + vaccin[3]);
+//
+//                }
+//
+//                TextView tv = (TextView) findViewById(R.id.result_selfCheck);
+//                tv.setText(result[0]);
+//            }
+//        });
    }
 }

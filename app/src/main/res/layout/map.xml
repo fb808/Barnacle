@@ -60,19 +60,19 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true" />
 
-        <Button
-            android:id="@+id/B_hopistals"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="21dp"
-            android:background="@android:color/black"
-            android:onClick="onClick"
-            android:text="근거리 병원 찾기"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+<!--        <Button-->
+<!--            android:id="@+id/B_hopistals"-->
+<!--            style="@style/Widget.AppCompat.Button.Borderless"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginBottom="21dp"-->
+<!--            android:background="@android:color/black"-->
+<!--            android:onClick="onClick"-->
+<!--            android:text="근거리 병원 찾기"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="18sp" />-->
 
     </RelativeLayout>
 
